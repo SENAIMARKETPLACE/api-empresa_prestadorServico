@@ -17,7 +17,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "empresas")
 public class Empresa {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -28,4 +28,5 @@ public class Empresa {
 	private String telefone;
 	private String email;
 	private String senha;
+	
 }
