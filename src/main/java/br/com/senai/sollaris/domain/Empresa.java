@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,6 +27,7 @@ public class Empresa {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonIgnore
 	private Long id;
 	private String nome_fantasia;
 	private String razao_social;
@@ -34,7 +37,7 @@ public class Empresa {
 	private String email;
 	private String senha;
 	
-	@OneToMany (mappedBy = "empresa", cascade = CascadeType.ALL)
-	private List<Endereco> enderecos = new ArrayList<>();
+	//@OneToMany (mappedBy = "empresa", cascade = CascadeType.ALL)
+	//private List<Endereco> enderecos = new ArrayList<>();
 	
 }
