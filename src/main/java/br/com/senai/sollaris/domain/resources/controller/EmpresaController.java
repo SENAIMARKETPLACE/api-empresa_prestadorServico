@@ -1,16 +1,23 @@
 package br.com.senai.sollaris.domain.resources.controller;
 
+import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.senai.sollaris.domain.Empresa;
 import br.com.senai.sollaris.domain.repository.EmpresaRepository;
@@ -36,8 +43,18 @@ public class EmpresaController {
 		return empresaService.listarEmpresa(id);
 	}
 	
-	@DeleteMapping ("delete/{id}")
+	@PostMapping
 	@Transactional
+	public ResponseEntity<Empresa> cadastrarEmpresa(@RequestBody Empresa empresa, UriComponentsBuilder uriBuilder) {
+		return empresaService.cadastrarEmpresa(empresa, uriBuilder);
+	}
+	
+	@PutMapping("alterar/{id}")
+	public ResponseEntity<Empresa> alterarEmpresa(@PathVariable Long id, @RequestBody Empresa empresa) {
+		return empresaService.alterarEmpresa(id, empresa);
+	}
+	
+	@DeleteMapping ("delete/{id}")
 	public ResponseEntity<Object> excluirEmpresa(@PathVariable Long id) {
 		return empresaService.excluirEmpresa(id);
 	}

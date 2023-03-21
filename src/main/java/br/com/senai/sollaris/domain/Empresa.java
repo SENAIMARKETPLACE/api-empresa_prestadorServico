@@ -40,4 +40,13 @@ public class Empresa {
 	//@OneToMany (mappedBy = "empresa", cascade = CascadeType.ALL)
 	//private List<Endereco> enderecos = new ArrayList<>();
 	
+	
+	public void alterar(Empresa empresa) {
+		this.nome_fantasia = empresa.getNome_fantasia();
+		this.razao_social = empresa.getRazao_social();
+		this.cnpj = empresa.getCnpj();
+		this.telefone = empresa.getTelefone();
+		this.email = empresa.getEmail();
+		this.senha = empresa.getSenha();
+	}
 }
