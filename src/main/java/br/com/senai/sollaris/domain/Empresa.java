@@ -13,6 +13,8 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import br.com.senai.sollaris.domain.resources.dtos.input.EmpresaDto;
+import br.com.senai.sollaris.domain.resources.dtos.input.PutEmpresaDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -48,5 +50,23 @@ public class Empresa {
 		this.telefone = empresa.getTelefone();
 		this.email = empresa.getEmail();
 		this.senha = empresa.getSenha();
+	}
+
+	public Empresa(EmpresaDto empresaDto) {
+		this.nome_fantasia = empresaDto.getNome_fantasia();
+		this.razao_social = empresaDto.getRazao_social();
+		this.cnpj = empresaDto.getCnpj();
+		this.telefone = empresaDto.getTelefone();
+		this.email = empresaDto.getEmail();
+		this.senha = empresaDto.getSenha();
+	}
+	
+	public Empresa(PutEmpresaDto putEmpresaDto) {
+		this.nome_fantasia = putEmpresaDto.getNome_fantasia();
+		this.razao_social = putEmpresaDto.getRazao_social();
+		this.cnpj = putEmpresaDto.getCnpj();
+		this.telefone = putEmpresaDto.getTelefone();
+		this.email = putEmpresaDto.getEmail();
+		this.senha = putEmpresaDto.getSenha();
 	}
 }

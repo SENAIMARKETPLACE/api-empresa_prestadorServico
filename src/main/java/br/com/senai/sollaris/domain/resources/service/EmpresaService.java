@@ -16,6 +16,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.senai.sollaris.domain.Empresa;
 import br.com.senai.sollaris.domain.repository.EmpresaRepository;
+import br.com.senai.sollaris.domain.resources.dtos.input.EmpresaDto;
 import br.com.senai.sollaris.domain.resources.dtos.output.ReturnEmpresaDto;
 import br.com.senai.sollaris.domain.resources.service.exceptions.ObjetoNaoEncontradoException;
 
@@ -37,10 +38,11 @@ public class EmpresaService {
 				.orElseThrow(() -> new ObjetoNaoEncontradoException("Empresa não encontrado")); 
 	}
 	
-	public ResponseEntity<Empresa> cadastrarEmpresa(Empresa empresa, UriComponentsBuilder uriBuilder) {
+	public ResponseEntity<Empresa> cadastrarEmpresa(EmpresaDto empresaDto, UriComponentsBuilder uriBuilder) {
+		Empresa empresa = new Empresa(empresaDto);
 		empresaRepository.save(empresa);
-		URI uri = uriBuilder.path("/empresa/{id}").buildAndExpand(empresa.getId()).toUri();
 		
+		URI uri = uriBuilder.path("/empresa/{id}").buildAndExpand(empresa.getId()).toUri();		
 		return ResponseEntity.created(uri).body(empresa);
 	}
 	

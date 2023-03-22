@@ -21,6 +21,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.senai.sollaris.domain.Empresa;
 import br.com.senai.sollaris.domain.repository.EmpresaRepository;
+import br.com.senai.sollaris.domain.resources.dtos.input.EmpresaDto;
 import br.com.senai.sollaris.domain.resources.dtos.output.ReturnEmpresaDto;
 import br.com.senai.sollaris.domain.resources.service.EmpresaService;
 
@@ -32,12 +33,13 @@ public class EmpresaController {
 	@Autowired
 	private EmpresaService empresaService;
 	
-	
+	//retorno
 	@GetMapping
 	public List<ReturnEmpresaDto> listarEmpresas () {
 		return empresaService.listarEmpresas();
 	}
 	
+	//retorno
 	@GetMapping("/{id}")
 	public ReturnEmpresaDto retornarEmpresa(@PathVariable Long id) {
 		return empresaService.listarEmpresa(id);
@@ -45,8 +47,8 @@ public class EmpresaController {
 	
 	@PostMapping
 	@Transactional
-	public ResponseEntity<Empresa> cadastrarEmpresa(@RequestBody Empresa empresa, UriComponentsBuilder uriBuilder) {
-		return empresaService.cadastrarEmpresa(empresa, uriBuilder);
+	public ResponseEntity<Empresa> cadastrarEmpresa(@RequestBody EmpresaDto empresaDto, UriComponentsBuilder uriBuilder) {
+		return empresaService.cadastrarEmpresa(empresaDto, uriBuilder);
 	}
 	
 	@PutMapping("alterar/{id}")
