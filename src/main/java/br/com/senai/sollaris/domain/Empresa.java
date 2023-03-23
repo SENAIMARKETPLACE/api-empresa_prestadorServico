@@ -43,13 +43,13 @@ public class Empresa {
 	//private List<Endereco> enderecos = new ArrayList<>();
 	
 	
-	public void alterar(Empresa empresa) {
-		this.nome_fantasia = empresa.getNome_fantasia();
-		this.razao_social = empresa.getRazao_social();
-		this.cnpj = empresa.getCnpj();
-		this.telefone = empresa.getTelefone();
-		this.email = empresa.getEmail();
-		this.senha = empresa.getSenha();
+	public void alterar(PutEmpresaDto empresaDto) {
+		this.nome_fantasia = empresaDto.getNome_fantasia();
+		this.razao_social = empresaDto.getRazao_social();
+		this.cnpj = empresaDto.getCnpj();
+		this.telefone = empresaDto.getTelefone();
+		this.email = empresaDto.getEmail();
+		this.senha = empresaDto.getSenha();
 	}
 
 	public Empresa(EmpresaDto empresaDto) {
