@@ -1,10 +1,7 @@
 package br.com.senai.sollaris.domain.resources.service;
 
 import java.net.URI;
-import java.util.List;
 import java.util.Optional;
-
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,9 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.senai.sollaris.domain.Empresa;
@@ -46,6 +40,12 @@ public class EmpresaService {
 		return ResponseEntity.ok(empresaRepository.findById(id)
 				.map(empresa -> new ReturnEmpresaDto(empresa))
 				.orElseThrow(() -> new ObjetoNaoEncontradoException("Empresa não encontrado")));
+	}
+	
+	//É utilizado pelo EnderecoService
+	public Empresa buscarEmpresa(Long id) {
+		return empresaRepository.findById(id)
+				.orElseThrow(() -> new ObjetoNaoEncontradoException("Empresa não existe"));
 	}
 	
 	public ResponseEntity<ReturnEmpresaDto> cadastrarEmpresa(EmpresaDto empresaDto, UriComponentsBuilder uriBuilder) {
