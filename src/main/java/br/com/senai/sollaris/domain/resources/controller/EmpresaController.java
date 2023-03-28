@@ -37,7 +37,7 @@ public class EmpresaController {
 	 */
 	@GetMapping
 	public ResponseEntity<Page<ReturnEmpresaDto>> listarEmpresas (
-			@PageableDefault(size = 1) Pageable page) {
+			@PageableDefault(size = 5) Pageable page) {
 		return empresaService.listarEmpresas(page);
 	}
 	
