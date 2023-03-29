@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import br.com.senai.sollaris.domain.Empresa;
 import br.com.senai.sollaris.domain.resources.dtos.input.EmpresaDto;
 import br.com.senai.sollaris.domain.resources.dtos.input.PutEmpresaDto;
 import br.com.senai.sollaris.domain.resources.dtos.output.ReturnEmpresaDto;
@@ -45,6 +46,12 @@ public class EmpresaController {
 	@GetMapping("/{id}")
 	public ResponseEntity<ReturnEmpresaDto> retornarEmpresa(@PathVariable Long id) {
 		return empresaService.listarEmpresa(id);
+	}
+	
+	//Será utilizado para devolver uma empresa para api de produto
+	@GetMapping("/listarempresa/{id}")
+	public ResponseEntity<Empresa> listEmpresa(@PathVariable Long id) {
+		return empresaService.listEmpresa(id);
 	}
 	
 	@PostMapping
