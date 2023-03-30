@@ -48,12 +48,6 @@ public class EmpresaService {
 				.orElseThrow(() -> new ObjetoNaoEncontradoException("Empresa não existe"));
 	}
 	
-	//Será utilizado para devolver uma empresa para api de produto
-	public ResponseEntity<Empresa> listEmpresa(Long id) {
-		return ResponseEntity.ok(empresaRepository.findById(id)
-				.orElseThrow(() -> new ObjetoNaoEncontradoException("Empresa não existe")));
-	}
-	
 	public ResponseEntity<ReturnEmpresaDto> cadastrarEmpresa(EmpresaDto empresaDto, UriComponentsBuilder uriBuilder) {
 		Empresa empresa = new Empresa(empresaDto);
 		empresaRepository.save(empresa);
