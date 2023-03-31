@@ -1,5 +1,7 @@
 package br.com.senai.sollaris.domain.resources.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -49,7 +51,7 @@ public class EmpresaController {
 	
 	@PostMapping
 	@Transactional
-	public ResponseEntity<ReturnEmpresaDto> cadastrarEmpresa(@RequestBody EmpresaDto empresaDto, UriComponentsBuilder uriBuilder) {
+	public ResponseEntity<ReturnEmpresaDto> cadastrarEmpresa(@Valid @RequestBody EmpresaDto empresaDto, UriComponentsBuilder uriBuilder) {
 		return empresaService.cadastrarEmpresa(empresaDto, uriBuilder);
 	}
 	
