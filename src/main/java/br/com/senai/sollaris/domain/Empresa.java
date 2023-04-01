@@ -36,6 +36,7 @@ public class Empresa {
 	private String razao_social;
 	private String cnpj;
 	
+	private String logo;
 	private String telefone;
 	private String email;
 	private String senha;
