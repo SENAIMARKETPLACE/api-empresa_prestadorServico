@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.senai.sollaris.domain.resources.dtos.input.EmpresaDto;
+import br.com.senai.sollaris.domain.resources.dtos.input.EmpresaLogin;
 import br.com.senai.sollaris.domain.resources.dtos.input.PutEmpresaDto;
 import br.com.senai.sollaris.domain.resources.dtos.output.ReturnEmpresaDto;
 import br.com.senai.sollaris.domain.resources.dtos.output.ReturnEmpresaPut;
@@ -58,11 +59,14 @@ public class EmpresaController {
 		return empresaService.alterarEmpresa(id, empresaDto);
 	}
 	
-	@DeleteMapping ("delete/{id}")
+	@DeleteMapping("delete/{id}")
 	public ResponseEntity<Object> excluirEmpresa(@PathVariable Long id) {
 		return empresaService.excluirEmpresa(id);
 	}
 	
-	
+	@PostMapping("/login")
+	public ResponseEntity<ReturnEmpresaDto> logarEmpresa(EmpresaLogin empresa) {
+		return empresaService.logarEmpresa(empresa);
+	}
 	
 }
