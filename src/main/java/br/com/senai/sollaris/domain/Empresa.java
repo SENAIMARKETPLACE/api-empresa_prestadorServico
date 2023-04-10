@@ -36,7 +36,6 @@ public class Empresa {
 	private String razao_social;
 	private String cnpj;
 	
-	private String logo;
 	private String telefone;
 	private String email;
 	private String senha;
@@ -44,7 +43,7 @@ public class Empresa {
 	@OneToMany (mappedBy = "empresa", cascade = CascadeType.ALL)
 	private List<Endereco> enderecos = new ArrayList<>();
 	
-	
+	//Utilizado para Put de emdpresa
 	public void alterar(PutEmpresaDto empresaDto) {
 		this.nome_fantasia = empresaDto.getNome_fantasia();
 		this.razao_social = empresaDto.getRazao_social();
@@ -54,6 +53,7 @@ public class Empresa {
 		this.senha = empresaDto.getSenha();
 	}
 
+	
 	public Empresa(EmpresaDto empresaDto) {
 		this.nome_fantasia = empresaDto.getNome_fantasia();
 		this.razao_social = empresaDto.getRazao_social();

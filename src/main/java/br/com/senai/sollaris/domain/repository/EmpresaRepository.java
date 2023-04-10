@@ -14,8 +14,8 @@ public interface EmpresaRepository extends JpaRepository<Empresa, Long>{
 
 	Optional<Empresa> findByEmail(String email);
 	
-	Optional<Empresa> findBySenha(String senha);
+	Optional<Empresa> findByCnpj(String cnpj);
 	
-	@Query ("SELECT e from Empresa e WHERE e.email = :emailUser and e.senha = :senhaUser")
-	Optional<Empresa> login(@Param("emailUser") String emailUser, @Param("senhaUser") String senhaUser);
-}
+	@Query ("SELECT e from Empresa e WHERE e.email = :emailBusiness and e.senha = :senhaBusiness")
+	Optional<Empresa> login(@Param("emailBusiness") String emailBusiness, @Param("senhaBusiness") String senhaBusiness);
+}	
