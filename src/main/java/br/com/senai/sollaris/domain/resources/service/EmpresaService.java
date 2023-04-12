@@ -19,6 +19,7 @@ import br.com.senai.sollaris.domain.resources.dtos.input.EmpresaLogin;
 import br.com.senai.sollaris.domain.resources.dtos.input.PutEmpresaDto;
 import br.com.senai.sollaris.domain.resources.dtos.output.ReturnEmpresaDto;
 import br.com.senai.sollaris.domain.resources.dtos.output.ReturnEmpresaPut;
+import br.com.senai.sollaris.domain.resources.service.exceptions.DadosInvalidosException;
 import br.com.senai.sollaris.domain.resources.service.exceptions.ObjetoNaoEncontradoException;
 
 @Service
@@ -38,15 +39,17 @@ public class EmpresaService {
 	
 	
 	public ResponseEntity<ReturnEmpresaDto> listarEmpresa(Long id) {
-		return ResponseEntity.ok(empresaRepository.findById(id)
+		ReturnEmpresaDto returnEmpresaDto = empresaRepository.findById(id)
 				.map(empresa -> new ReturnEmpresaDto(empresa))
-				.orElseThrow(() -> new ObjetoNaoEncontradoException("Empresa não encontrado")));
+				.orElseThrow(() -> new ObjetoNaoEncontradoException("Empresa não encontrada no sistema, tente novamente"));
+		
+		return ResponseEntity.ok(returnEmpresaDto);
 	}
 	
 	//É utilizado pelo EnderecoService
 	public Empresa buscarEmpresa(Long id) {
 		return empresaRepository.findById(id)
-				.orElseThrow(() -> new ObjetoNaoEncontradoException("Empresa não existe"));
+				.orElseThrow(() -> new DadosInvalidosException("Empresa não existe no sistema, tente novamente"));
 	}
 	
 	public ResponseEntity<ReturnEmpresaDto> cadastrarEmpresa(EmpresaDto empresaDto, UriComponentsBuilder uriBuilder) {

@@ -53,7 +53,6 @@ public class Empresa {
 		this.senha = empresaDto.getSenha();
 	}
 
-	
 	public Empresa(EmpresaDto empresaDto) {
 		this.nome_fantasia = empresaDto.getNome_fantasia();
 		this.razao_social = empresaDto.getRazao_social();
