@@ -1,6 +1,7 @@
 package br.com.senai.sollaris.domain.resources.handleExceptions;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +11,6 @@ import org.springframework.http.HttpStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-import br.com.senai.sollaris.domain.resources.service.exceptions.DadosInvalidosException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,13 +25,13 @@ public class RespostaException {
 	private StringBuffer Url;
 	private Integer status;
 	private String recurso;
-	private LocalDateTime dataRequisicao;
+	private String dataRequisicao;
 	private List<Campo> campos;
 	
 	public RespostaException(HttpStatus status, List<Campo> campos) {
 		this.titulo = "Campos inválidos, tente novamente";
 		this.status = status.value();
-		this.dataRequisicao = LocalDateTime.now();
+		this.dataRequisicao = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
 		this.campos = campos;
 	}
 
@@ -40,17 +40,8 @@ public class RespostaException {
 		this.status = status;
 		this.recurso = request.getRequestURI();
 		this.Url = request.getRequestURL();
-		this.dataRequisicao = LocalDateTime.now();
+		this.dataRequisicao = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
 	}
 	
-	public RespostaException(DadosInvalidosException ex, HttpStatus status, HttpServletRequest request) {
-		this.titulo = ex.getMessage();
-		this.status = status.value();
-		this.recurso = request.getRequestURI();
-		this.Url = request.getRequestURL();
-		this.dataRequisicao = LocalDateTime.now();
-	}
-
-
 
 }
