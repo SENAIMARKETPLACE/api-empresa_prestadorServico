@@ -3,6 +3,7 @@ package br.com.senai.sollaris.domain.resources.dtos.input;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.br.CNPJ;
 
@@ -24,6 +25,7 @@ public class EmpresaDto {
 	@CNPJ
 	private String cnpj;
 	@NotBlank
+	@Size(min = 11, max = 11)
 	private String telefone;
 	@NotBlank
 	@Email
