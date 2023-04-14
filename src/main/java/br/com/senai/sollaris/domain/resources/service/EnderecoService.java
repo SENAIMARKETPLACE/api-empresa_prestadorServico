@@ -15,18 +15,5 @@ import br.com.senai.sollaris.domain.resources.dtos.output.ReturnEmpresaDto;
 @Service
 public class EnderecoService {
 	
-	@Autowired
-	private EmpresaService empresaService;
-	
-	@Transactional //POST, PUT e Delete, TCL
-	public ResponseEntity<ReturnEmpresaDto> cadastrarEndereco(EnderecoDto endereco, UriComponentsBuilder uriBuilder) {
-		//Reflexo, é necessário buscar uma empresa
-		Empresa empresa = empresaService.buscarEmpresa(endereco.getEmpresa_id());
-		empresa.adicionarEndereco(empresa, endereco);
-		
-		URI uri = uriBuilder.path("api/business/address/{id}").buildAndExpand(empresa.getId()).toUri();
-		return ResponseEntity.created(uri).body(new ReturnEmpresaDto(empresa));
-		
-	}
 
 }

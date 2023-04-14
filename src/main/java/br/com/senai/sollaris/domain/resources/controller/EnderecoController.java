@@ -21,9 +21,4 @@ public class EnderecoController {
 	@Autowired
 	private EnderecoService enderecoService;
 	
-	@PostMapping
-	public ResponseEntity<ReturnEmpresaDto> cadastrarEndereco(@RequestBody EnderecoDto endereco, 
-			UriComponentsBuilder uriBuilder) {
-		return enderecoService.cadastrarEndereco(endereco, uriBuilder);
-	}
 }

@@ -1,8 +1,10 @@
 package br.com.senai.sollaris.domain.resources.dtos.input;
 
 
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.br.CNPJ;
@@ -32,5 +34,7 @@ public class EmpresaDto {
 	private String email;
 	@NotBlank
 	private String senha;
-	
+	@Valid //faz as validações
+	@NotNull
+	private EnderecoDto endereco;
 }

@@ -13,8 +13,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EnderecoDto {
-	@NotNull
-	private Long empresa_id;
+	
 	@NotBlank
 	private String cep;
 	@NotBlank
@@ -27,7 +26,7 @@ public class EnderecoDto {
 	private String bairro;
 	@NotBlank
 	private String cidade;
-	@NotBlank
+	
 	private String complemento;
 	
 }

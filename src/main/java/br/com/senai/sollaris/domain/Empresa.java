@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.senai.sollaris.domain.resources.dtos.input.EmpresaDto;
@@ -41,6 +42,7 @@ public class Empresa {
 	private String senha;
 	
 	@OneToMany (mappedBy = "empresa", cascade = CascadeType.ALL)
+	@JsonBackReference
 	private List<Endereco> enderecos = new ArrayList<>();
 	
 	//Utilizado para Put de emdpresa
@@ -71,8 +73,10 @@ public class Empresa {
 		this.senha = putEmpresaDto.getSenha();
 	}
 
-	public void adicionarEndereco(Empresa empresa, EnderecoDto endereco) {
-		this.enderecos.add(new Endereco(endereco, empresa));
+	public void adicionarEndereco(EnderecoDto endereco) {
+		this.enderecos.add(new Endereco(endereco, this));
 		
 	}
+
+
 }

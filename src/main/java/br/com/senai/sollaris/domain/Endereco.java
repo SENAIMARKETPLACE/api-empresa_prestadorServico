@@ -7,6 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.senai.sollaris.domain.resources.dtos.input.EnderecoDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,9 +24,11 @@ import lombok.Setter;
 public class Endereco {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonIgnore
 	private Long id;
 	
 	@ManyToOne
+	@JsonBackReference
 	private Empresa empresa;
 	
 	private String cep;
@@ -34,8 +39,8 @@ public class Endereco {
 	private String cidade;
 	private String complemento;
 	
-	public Endereco(EnderecoDto enderecoDto, Empresa empresa) {
-		this.empresa = empresa; //JPA, ela pega o ID
+	public Endereco(EnderecoDto enderecoDto, Empresa empresa2) {
+		 //JPA, ela pega o ID
 		this.cep = enderecoDto.getCep();
 		this.logradouro = enderecoDto.getLogradouro();
 		this.numero = enderecoDto.getNumero();
@@ -43,5 +48,7 @@ public class Endereco {
 		this.bairro = enderecoDto.getBairro();
 		this.cidade = enderecoDto.getCidade();
 		this.complemento = enderecoDto.getComplemento();
+		
+		this.empresa = empresa2;
 	}
 }

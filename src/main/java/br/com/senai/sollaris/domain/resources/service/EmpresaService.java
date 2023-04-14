@@ -53,8 +53,13 @@ public class EmpresaService {
 	}
 	
 	public ResponseEntity<ReturnEmpresaDto> cadastrarEmpresa(EmpresaDto empresaDto, UriComponentsBuilder uriBuilder) {
+		
+		//Nova empresa, ela tem endereço? N TEM
 		Empresa empresa = new Empresa(empresaDto);
+		//Salva a empresa
 		empresaRepository.save(empresa);
+		//Salva o endereço para a empresa, o endereço vem do DTO
+		empresa.adicionarEndereco(empresaDto.getEndereco());
 		
 		URI uri = uriBuilder.path("/empresa/{id}").buildAndExpand(empresa.getId()).toUri();		
 		return ResponseEntity.created(uri).body(new ReturnEmpresaDto(empresa));
