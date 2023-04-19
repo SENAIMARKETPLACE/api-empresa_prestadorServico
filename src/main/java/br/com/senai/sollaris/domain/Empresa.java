@@ -1,5 +1,6 @@
 package br.com.senai.sollaris.domain;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +41,8 @@ public class Empresa {
 	private String telefone;
 	private String email;
 	private String senha;
+	private LocalDateTime dt_registro;
+	private LocalDateTime dt_alteracao;
 	
 	@OneToMany (mappedBy = "empresa", cascade = CascadeType.ALL)
 	@JsonBackReference
@@ -53,6 +56,7 @@ public class Empresa {
 		this.telefone = empresaDto.getTelefone();
 		this.email = empresaDto.getEmail();
 		this.senha = empresaDto.getSenha();
+		this.dt_alteracao = LocalDateTime.now();
 	}
 
 	public Empresa(EmpresaDto empresaDto) {
@@ -62,6 +66,7 @@ public class Empresa {
 		this.telefone = empresaDto.getTelefone();
 		this.email = empresaDto.getEmail();
 		this.senha = empresaDto.getSenha();
+		this.dt_registro = LocalDateTime.now();
 	}
 	
 	public Empresa(PutEmpresaDto putEmpresaDto) {
@@ -71,6 +76,7 @@ public class Empresa {
 		this.telefone = putEmpresaDto.getTelefone();
 		this.email = putEmpresaDto.getEmail();
 		this.senha = putEmpresaDto.getSenha();
+		
 	}
 
 	public void adicionarEndereco(EnderecoDto endereco) {

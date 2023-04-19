@@ -1,5 +1,7 @@
 package br.com.senai.sollaris.domain;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -38,6 +40,7 @@ public class Endereco {
 	private String bairro;
 	private String cidade;
 	private String complemento;
+	private LocalDateTime dt_registro;
 	
 	public Endereco(EnderecoDto enderecoDto, Empresa empresa2) {
 		 //JPA, ela pega o ID
@@ -50,5 +53,7 @@ public class Endereco {
 		this.complemento = enderecoDto.getComplemento();
 		
 		this.empresa = empresa2;
+		
+		this.dt_registro = LocalDateTime.now();
 	}
 }

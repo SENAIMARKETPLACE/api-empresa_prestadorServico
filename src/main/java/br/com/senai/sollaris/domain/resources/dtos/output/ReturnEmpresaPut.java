@@ -1,5 +1,7 @@
 package br.com.senai.sollaris.domain.resources.dtos.output;
 
+import java.time.LocalDateTime;
+
 import br.com.senai.sollaris.domain.Empresa;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +17,7 @@ public class ReturnEmpresaPut {
 	private String telefone;
 	private String email;
 	private String senha;
+	private LocalDateTime dt_alteracao;
 	
 	public ReturnEmpresaPut(Empresa empresa) {
 		this.nome_fantasia = empresa.getNome_fantasia();
@@ -23,5 +26,6 @@ public class ReturnEmpresaPut {
 		this.telefone = empresa.getTelefone();
 		this.email = empresa.getEmail();
 		this.senha = empresa.getSenha();
+		this.dt_alteracao = empresa.getDt_alteracao();
 	}
 }
