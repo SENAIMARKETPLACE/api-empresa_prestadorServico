@@ -41,6 +41,7 @@ public class Empresa {
 	private String telefone;
 	private String email;
 	private String senha;
+	private String img;
 	private LocalDateTime dt_registro;
 	private LocalDateTime dt_alteracao;
 	
@@ -56,9 +57,11 @@ public class Empresa {
 		this.telefone = empresaDto.getTelefone();
 		this.email = empresaDto.getEmail();
 		this.senha = empresaDto.getSenha();
+		this.img = empresaDto.getUrl_logo();
 		this.dt_alteracao = LocalDateTime.now();
 	}
-
+	
+	//Utilizado para cadastrar Produto
 	public Empresa(EmpresaDto empresaDto) {
 		this.nome_fantasia = empresaDto.getNome_fantasia();
 		this.razao_social = empresaDto.getRazao_social();
@@ -66,19 +69,10 @@ public class Empresa {
 		this.telefone = empresaDto.getTelefone();
 		this.email = empresaDto.getEmail();
 		this.senha = empresaDto.getSenha();
+		this.img = empresaDto.getUrl_logo();
 		this.dt_registro = LocalDateTime.now();
 	}
 	
-	public Empresa(PutEmpresaDto putEmpresaDto) {
-		this.nome_fantasia = putEmpresaDto.getNome_fantasia();
-		this.razao_social = putEmpresaDto.getRazao_social();
-		this.cnpj = putEmpresaDto.getCnpj();
-		this.telefone = putEmpresaDto.getTelefone();
-		this.email = putEmpresaDto.getEmail();
-		this.senha = putEmpresaDto.getSenha();
-		
-	}
-
 	public void adicionarEndereco(EnderecoDto endereco) {
 		this.enderecos.add(new Endereco(endereco, this));
 		

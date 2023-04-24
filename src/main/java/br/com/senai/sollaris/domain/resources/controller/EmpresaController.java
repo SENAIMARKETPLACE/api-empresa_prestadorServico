@@ -8,7 +8,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +20,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.senai.sollaris.domain.resources.dtos.input.EmpresaDto;
 import br.com.senai.sollaris.domain.resources.dtos.input.EmpresaLogin;
-
 import br.com.senai.sollaris.domain.resources.dtos.input.PutEmpresaDto;
 import br.com.senai.sollaris.domain.resources.dtos.output.ReturnEmpresaDto;
 import br.com.senai.sollaris.domain.resources.dtos.output.ReturnEmpresaPut;
@@ -29,7 +27,6 @@ import br.com.senai.sollaris.domain.resources.service.EmpresaService;
 
 @RequestMapping("api/business")
 @RestController
-@CrossOrigin("http://localhost:3000") //CORS, pra reconhecer o front-end
 public class EmpresaController {
 	
 	@Autowired
