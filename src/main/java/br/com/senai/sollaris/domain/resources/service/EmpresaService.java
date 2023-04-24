@@ -3,7 +3,6 @@ package br.com.senai.sollaris.domain.resources.service;
 import java.net.URI;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -21,12 +20,18 @@ import br.com.senai.sollaris.domain.resources.dtos.output.ReturnEmpresaDto;
 import br.com.senai.sollaris.domain.resources.dtos.output.ReturnEmpresaPut;
 import br.com.senai.sollaris.domain.resources.service.exceptions.DadosInvalidosException;
 import br.com.senai.sollaris.domain.resources.service.exceptions.ObjetoNaoEncontradoException;
+import br.com.senai.sollaris.domain.resources.service.validations.EmpresaServiceValidation;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 @Service
 public class EmpresaService {
+	
 
-	@Autowired
-	private EmpresaRepository empresaRepository;
+	private final EmpresaRepository empresaRepository;
+	
+	private final EmpresaServiceValidation serviceValidation;
+	
 	
 	public ResponseEntity<Page<ReturnEmpresaDto>> listarEmpresas(Pageable page) {
 		//STREAM API - Java 8; Map ele tá varrendo a List<Empresa> (Array); ToList - transforma em lista
@@ -46,13 +51,19 @@ public class EmpresaService {
 		return ResponseEntity.ok(returnEmpresaDto);
 	}
 	
+	
 	//É utilizado pelo EnderecoService
 	public Empresa buscarEmpresa(Long id) {
 		return empresaRepository.findById(id)
 				.orElseThrow(() -> new DadosInvalidosException("Empresa não existe no sistema, tente novamente"));
 	}
 	
+	
+	@Transactional
 	public ResponseEntity<ReturnEmpresaDto> cadastrarEmpresa(EmpresaDto empresaDto, UriComponentsBuilder uriBuilder) {
+		
+		serviceValidation.validarEmail(empresaDto);
+	 	serviceValidation.validarCNPJ(empresaDto);
 		
 		//Nova empresa, ela tem endereço? N TEM
 		Empresa empresa = new Empresa(empresaDto);
@@ -65,8 +76,12 @@ public class EmpresaService {
 		return ResponseEntity.created(uri).body(new ReturnEmpresaDto(empresa));
 	}
 	
+	
 	@Transactional
 	public ResponseEntity<ReturnEmpresaPut> alterarEmpresa(@PathVariable Long id, PutEmpresaDto empresaDto) {
+	
+		serviceValidation.validarEmail(empresaDto);
+		
 		Optional<Empresa> empresaCaixa = empresaRepository.findById(id);
 		
 		if(empresaCaixa.isPresent()) {
@@ -77,6 +92,7 @@ public class EmpresaService {
 		return ResponseEntity.notFound().build();
 	}
 	
+	
 	@Transactional
 	public ResponseEntity<Object> excluirEmpresa(@PathVariable Long id) {
 		if (empresaRepository.existsById(id)) {
@@ -85,6 +101,7 @@ public class EmpresaService {
 		}
 		return ResponseEntity.notFound().build();
 	}
+	
 	
 	@Transactional
 	public ResponseEntity<ReturnEmpresaDto> logarEmpresa(EmpresaLogin empresa) {

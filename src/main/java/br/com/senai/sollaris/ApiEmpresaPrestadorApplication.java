@@ -19,5 +19,5 @@ public class ApiEmpresaPrestadorApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ApiEmpresaPrestadorApplication.class, args);
 	}
-	
+
 }
