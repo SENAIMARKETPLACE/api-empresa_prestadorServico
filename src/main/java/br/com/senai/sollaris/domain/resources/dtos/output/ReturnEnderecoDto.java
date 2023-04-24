@@ -1,5 +1,8 @@
 package br.com.senai.sollaris.domain.resources.dtos.output;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import br.com.senai.sollaris.domain.Endereco;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,6 +12,7 @@ import lombok.Setter;
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonInclude(value = Include.NON_NULL)
 public class ReturnEnderecoDto {
 	private String cep;
 	private String logradouro;
@@ -16,6 +20,7 @@ public class ReturnEnderecoDto {
 	private String estado;
 	private String bairro;
 	private String cidade;
+	@JsonInclude(value = Include.NON_EMPTY)
 	private String complemento;
 	
 	//Tá sendo usado para conversão de endereço para retorno em ReturnEmpresaDto
@@ -26,5 +31,6 @@ public class ReturnEnderecoDto {
 		this.estado = endereco.getEstado();
 		this.bairro = endereco.getBairro();
 		this.cidade = endereco.getCidade();
-	}
+		this.complemento = endereco.getComplemento();
+		}
 }

@@ -34,6 +34,8 @@ public class EmpresaDto {
 	private String email;
 	@NotBlank
 	private String senha;
+	@NotBlank
+	private String url_logo;
 	@Valid //faz as validações
 	@NotNull
 	private EnderecoDto endereco;

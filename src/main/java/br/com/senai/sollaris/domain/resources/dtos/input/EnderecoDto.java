@@ -1,7 +1,6 @@
 package br.com.senai.sollaris.domain.resources.dtos.input;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

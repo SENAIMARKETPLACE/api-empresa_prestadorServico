@@ -30,5 +30,7 @@ public class PutEmpresaDto {
 	private String email;
 	@NotBlank
 	private String senha;
+	@NotBlank
+	private String url_logo;
 	
 }

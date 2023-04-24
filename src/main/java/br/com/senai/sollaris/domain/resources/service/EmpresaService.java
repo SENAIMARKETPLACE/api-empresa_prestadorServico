@@ -58,7 +58,7 @@ public class EmpresaService {
 				.orElseThrow(() -> new DadosInvalidosException("Empresa não existe no sistema, tente novamente"));
 	}
 	
-	
+
 	@Transactional
 	public ResponseEntity<ReturnEmpresaDto> cadastrarEmpresa(EmpresaDto empresaDto, UriComponentsBuilder uriBuilder) {
 		
