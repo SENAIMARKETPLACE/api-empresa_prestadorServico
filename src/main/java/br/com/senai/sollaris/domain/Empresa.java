@@ -38,6 +38,7 @@ public class Empresa {
 	private String razao_social;
 	private String cnpj;
 	
+	private String nome_responsavel;
 	private String telefone;
 	private String email;
 	private String senha;
@@ -54,6 +55,7 @@ public class Empresa {
 		this.nome_fantasia = empresaDto.getNome_fantasia();
 		this.razao_social = empresaDto.getRazao_social();
 		this.cnpj = empresaDto.getCnpj();
+		this.nome_responsavel = empresaDto.getNome_responsavel();
 		this.telefone = empresaDto.getTelefone();
 		this.email = empresaDto.getEmail();
 		this.senha = empresaDto.getSenha();
@@ -66,6 +68,7 @@ public class Empresa {
 		this.nome_fantasia = empresaDto.getNome_fantasia();
 		this.razao_social = empresaDto.getRazao_social();
 		this.cnpj = empresaDto.getCnpj();
+		this.nome_responsavel = empresaDto.getNome_responsavel();
 		this.telefone = empresaDto.getTelefone();
 		this.email = empresaDto.getEmail();
 		this.senha = empresaDto.getSenha();
@@ -82,6 +85,7 @@ public class Empresa {
 		this.nome_fantasia = empresaDto.getNome_fantasia();
 		this.razao_social = empresaDto.getRazao_social();
 		this.cnpj = empresaDto.getCnpj();
+		this.nome_responsavel = empresaDto.getNome_responsavel();
 		this.telefone = empresaDto.getTelefone();
 		this.email = empresaDto.getEmail();
 		this.senha = empresaDto.getSenha();

@@ -13,6 +13,7 @@ public class ReturnEmpresaPut {
 	private String nome_fantasia;
 	private String razao_social;
 	private String cnpj;
+	private String nome_responsavel;
 	private String telefone;
 	private String email;
 	private String senha;
@@ -23,6 +24,7 @@ public class ReturnEmpresaPut {
 		this.nome_fantasia = empresa.getNome_fantasia();
 		this.razao_social = empresa.getRazao_social();
 		this.cnpj = empresa.getCnpj();
+		this.nome_responsavel = empresa.getNome_responsavel();
 		this.telefone = empresa.getTelefone();
 		this.email = empresa.getEmail();
 		this.senha = empresa.getSenha();

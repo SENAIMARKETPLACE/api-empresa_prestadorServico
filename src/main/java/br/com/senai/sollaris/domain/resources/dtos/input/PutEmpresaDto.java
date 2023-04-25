@@ -24,6 +24,8 @@ public class PutEmpresaDto {
 	@CNPJ
 	private String cnpj;
 	@NotBlank
+	private String nome_responsavel;
+	@NotBlank
 	private String telefone;
 	@NotBlank
 	@Email

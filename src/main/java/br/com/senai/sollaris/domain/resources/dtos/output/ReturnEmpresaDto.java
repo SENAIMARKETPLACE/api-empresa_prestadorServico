@@ -16,6 +16,7 @@ public class ReturnEmpresaDto {
 	private Long id;
 	private String nome_fantasia;
 	private String cnpj;
+	private String nome_responsavel;
 	private String telefone;
 	private String url_logo;
 	private List<ReturnEnderecoDto> enderecos;
@@ -24,6 +25,7 @@ public class ReturnEmpresaDto {
 		this.id = empresa.getId();
 		this.nome_fantasia = empresa.getNome_fantasia();
 		this.cnpj = empresa.getCnpj();
+		this.nome_responsavel = empresa.getNome_responsavel();
 		this.telefone = empresa.getTelefone();
 		this.url_logo = empresa.getImg();
 		this.enderecos = empresa.getEnderecos()

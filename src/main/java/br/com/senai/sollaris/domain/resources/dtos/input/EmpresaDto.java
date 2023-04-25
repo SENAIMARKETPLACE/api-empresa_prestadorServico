@@ -26,6 +26,8 @@ public class EmpresaDto {
 	@NotBlank
 	@CNPJ
 	private String cnpj;
+	@NotNull
+	private String nome_responsavel;
 	@NotBlank
 	@Size(min = 11, max = 11)
 	private String telefone;
