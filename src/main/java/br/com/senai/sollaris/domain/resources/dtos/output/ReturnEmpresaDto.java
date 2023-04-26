@@ -14,6 +14,7 @@ import lombok.Setter;
 public class ReturnEmpresaDto {
 	
 	private Long id;
+	private String nome_proprietario;
 	private String nome_fantasia;
 	private String cnpj;
 	private String nome_responsavel;
@@ -23,9 +24,9 @@ public class ReturnEmpresaDto {
 	
 	public ReturnEmpresaDto(Empresa empresa) {
 		this.id = empresa.getId();
+		this.nome_proprietario = empresa.getNome_responsavel();
 		this.nome_fantasia = empresa.getNome_fantasia();
 		this.cnpj = empresa.getCnpj();
-		this.nome_responsavel = empresa.getNome_responsavel();
 		this.telefone = empresa.getTelefone();
 		this.url_logo = empresa.getImg();
 		this.enderecos = empresa.getEnderecos()

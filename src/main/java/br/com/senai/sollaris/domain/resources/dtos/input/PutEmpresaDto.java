@@ -15,7 +15,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PutEmpresaDto {
-
+	
+	@NotBlank
+	private String nome_proprietario;
 	@NotBlank
 	private String nome_fantasia;
 	@NotBlank
@@ -23,8 +25,6 @@ public class PutEmpresaDto {
 	@NotBlank
 	@CNPJ
 	private String cnpj;
-	@NotBlank
-	private String nome_responsavel;
 	@NotBlank
 	private String telefone;
 	@NotBlank

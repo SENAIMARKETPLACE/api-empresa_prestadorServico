@@ -18,7 +18,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EmpresaDto {
-
+	
+	@NotNull
+	private String nome_proprietario;
 	@NotBlank
 	private String nome_fantasia;
 	@NotBlank
@@ -26,8 +28,6 @@ public class EmpresaDto {
 	@NotBlank
 	@CNPJ
 	private String cnpj;
-	@NotNull
-	private String nome_responsavel;
 	@NotBlank
 	@Size(min = 11, max = 11)
 	private String telefone;
