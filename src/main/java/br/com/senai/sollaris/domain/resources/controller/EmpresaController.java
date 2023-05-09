@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import br.com.senai.sollaris.domain.resources.dtos.input.PutBannerDto;
 import br.com.senai.sollaris.domain.resources.dtos.input.EmpresaDto;
 import br.com.senai.sollaris.domain.resources.dtos.input.EmpresaLogin;
 import br.com.senai.sollaris.domain.resources.dtos.input.PutEmpresaDto;
+import br.com.senai.sollaris.domain.resources.dtos.output.ReturnBannerPut;
 import br.com.senai.sollaris.domain.resources.dtos.output.ReturnEmpresaDto;
 import br.com.senai.sollaris.domain.resources.dtos.output.ReturnEmpresaPut;
 import br.com.senai.sollaris.domain.resources.service.EmpresaService;
@@ -67,6 +69,16 @@ public class EmpresaController {
 	@PostMapping("/login")
 	public ResponseEntity<ReturnEmpresaDto> logarEmpresa(@RequestBody @Valid EmpresaLogin empresa) {
 		return empresaService.logarEmpresa(empresa);
+	}
+	
+//	@PostMapping("banner")
+//	public ResponseEntity<ReturnBannerDto> inserirBanner(@RequestBody @Valid BannerDto bannerDto, UriComponentsBuilder uriBuilder) {
+//		return empresaService.inserirBanner(bannerDto, uriBuilder);
+//	}
+	
+	@PutMapping("banner/{id}")
+	public ResponseEntity<ReturnBannerPut> alterarBanner(@PathVariable Long id, PutBannerDto bannerDto){
+		return empresaService.alterarBanner(id, bannerDto);
 	}
 
 }

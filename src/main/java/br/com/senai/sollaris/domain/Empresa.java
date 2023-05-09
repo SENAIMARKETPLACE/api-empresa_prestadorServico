@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.senai.sollaris.domain.resources.dtos.input.EmpresaDto;
 import br.com.senai.sollaris.domain.resources.dtos.input.EnderecoDto;
+import br.com.senai.sollaris.domain.resources.dtos.input.PutBannerDto;
 import br.com.senai.sollaris.domain.resources.dtos.input.PutEmpresaDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -43,12 +44,18 @@ public class Empresa {
 	private String email;
 	private String senha;
 	private String img;
+	private String banner;
 	private LocalDateTime dt_registro;
 	private LocalDateTime dt_alteracao;
 	
 	@OneToMany (mappedBy = "empresa", cascade = CascadeType.ALL)
 	@JsonBackReference
 	private List<Endereco> enderecos = new ArrayList<>();
+	
+	//Utilizado para Put de banner
+	public void alterarBanner(PutBannerDto bannerDto) {
+		this.banner = bannerDto.getUrl_banner();
+	}
 	
 	//Utilizado para Put de emdpresa
 	public void alterar(PutEmpresaDto empresaDto) {

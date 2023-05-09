@@ -15,7 +15,9 @@ import br.com.senai.sollaris.domain.Empresa;
 import br.com.senai.sollaris.domain.repository.EmpresaRepository;
 import br.com.senai.sollaris.domain.resources.dtos.input.EmpresaDto;
 import br.com.senai.sollaris.domain.resources.dtos.input.EmpresaLogin;
+import br.com.senai.sollaris.domain.resources.dtos.input.PutBannerDto;
 import br.com.senai.sollaris.domain.resources.dtos.input.PutEmpresaDto;
+import br.com.senai.sollaris.domain.resources.dtos.output.ReturnBannerPut;
 import br.com.senai.sollaris.domain.resources.dtos.output.ReturnEmpresaDto;
 import br.com.senai.sollaris.domain.resources.dtos.output.ReturnEmpresaPut;
 import br.com.senai.sollaris.domain.resources.service.exceptions.DadosInvalidosException;
@@ -108,5 +110,18 @@ public class EmpresaService {
 		return ResponseEntity.ok(empresaRepository.login(empresa.getEmail(), empresa.getSenha())
 				.map(ReturnEmpresaDto::new)
 				.orElseThrow(() -> new ObjetoNaoEncontradoException("Email e/ou senha inválida!")));
+	}
+	
+	@Transactional
+	public ResponseEntity<ReturnBannerPut> alterarBanner(@PathVariable Long id, PutBannerDto bannerDto) {
+		
+		Optional<Empresa> empresaCaixa = empresaRepository.findById(id);
+		
+		if(empresaCaixa.isPresent()) {
+			Empresa empresaSGBD = empresaCaixa.get();
+			empresaSGBD.alterarBanner(bannerDto);
+			return ResponseEntity.ok(new ReturnBannerPut(empresaSGBD));
+		}
+		return ResponseEntity.notFound().build();
 	}
 }

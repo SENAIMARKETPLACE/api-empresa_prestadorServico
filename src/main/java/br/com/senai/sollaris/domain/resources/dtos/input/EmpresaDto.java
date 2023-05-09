@@ -38,6 +38,8 @@ public class EmpresaDto {
 	private String senha;
 	@NotBlank
 	private String url_logo;
+	
+	private String url_banner;
 	@Valid //faz as validações
 	@NotNull
 	private EnderecoDto endereco;
