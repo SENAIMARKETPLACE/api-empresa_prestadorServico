@@ -55,6 +55,7 @@ public class Empresa {
 	//Utilizado para Put de banner
 	public void alterarBanner(PutBannerDto bannerDto) {
 		this.banner = bannerDto.getUrl_banner();
+		this.dt_alteracao = LocalDateTime.now();
 	}
 	
 	//Utilizado para Put de emdpresa

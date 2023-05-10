@@ -17,7 +17,6 @@ public class ReturnEmpresaDto {
 	private String nome_proprietario;
 	private String nome_fantasia;
 	private String cnpj;
-	private String nome_responsavel;
 	private String telefone;
 	private String url_logo;
 	private List<ReturnEnderecoDto> enderecos;

@@ -71,13 +71,8 @@ public class EmpresaController {
 		return empresaService.logarEmpresa(empresa);
 	}
 	
-//	@PostMapping("banner")
-//	public ResponseEntity<ReturnBannerDto> inserirBanner(@RequestBody @Valid BannerDto bannerDto, UriComponentsBuilder uriBuilder) {
-//		return empresaService.inserirBanner(bannerDto, uriBuilder);
-//	}
-	
 	@PutMapping("banner/{id}")
-	public ResponseEntity<ReturnBannerPut> alterarBanner(@PathVariable Long id, PutBannerDto bannerDto){
+	public ResponseEntity<ReturnBannerPut> alterarBanner(@PathVariable Long id, @RequestBody @Valid PutBannerDto bannerDto){
 		return empresaService.alterarBanner(id, bannerDto);
 	}
 
