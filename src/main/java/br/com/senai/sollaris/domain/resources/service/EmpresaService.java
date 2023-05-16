@@ -29,11 +29,9 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class EmpresaService {
 	
-
 	private final EmpresaRepository empresaRepository;
 	
 	private final EmpresaServiceValidation serviceValidation;
-	
 	
 	public ResponseEntity<Page<ReturnEmpresaDto>> listarEmpresas(Pageable page) {
 		//STREAM API - Java 8; Map ele tá varrendo a List<Empresa> (Array); ToList - transforma em lista
@@ -83,6 +81,7 @@ public class EmpresaService {
 	public ResponseEntity<ReturnEmpresaPut> alterarEmpresa(@PathVariable Long id, PutEmpresaDto empresaDto) {
 	
 		serviceValidation.validarEmail(empresaDto);
+		serviceValidation.validarCNPJ(empresaDto);
 		
 		Optional<Empresa> empresaCaixa = empresaRepository.findById(id);
 		

@@ -42,4 +42,14 @@ public class EmpresaServiceValidation {
 		if(cnpj_em_uso)
 			throw new CnpjEmUsoException("CNPJ em uso, tente novamente!");
 	}
+
+
+	public void validarCNPJ(PutEmpresaDto empresaDto) {
+		boolean cnpj_em_uso = empresaRepository.findByCnpj(empresaDto.getCnpj())
+				.stream().anyMatch(empresaSGDB -> !empresaSGDB.equals(new Empresa(empresaDto)));
+		
+		if(cnpj_em_uso)
+			throw new CnpjEmUsoException("CNPJ em uso, tente novamente!");
+	}
+		
 }

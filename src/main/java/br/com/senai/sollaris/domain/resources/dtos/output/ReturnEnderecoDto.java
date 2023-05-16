@@ -14,6 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @JsonInclude(value = Include.NON_NULL)
 public class ReturnEnderecoDto {
+	private Long id;
 	private String cep;
 	private String logradouro;
 	private String numero;
@@ -25,6 +26,7 @@ public class ReturnEnderecoDto {
 	
 	//Tá sendo usado para conversão de endereço para retorno em ReturnEmpresaDto
 	public ReturnEnderecoDto(Endereco endereco) {
+		this.id = endereco.getId();
 		this.cep = endereco.getCep();
 		this.logradouro = endereco.getLogradouro();
 		this.numero = endereco.getNumero();

@@ -44,7 +44,6 @@ public class EmpresaController {
 		return empresaService.listarEmpresas(page);
 	}
 	
-	//retorno
 	@GetMapping("/{id}")
 	public ResponseEntity<ReturnEmpresaDto> retornarEmpresa(@PathVariable Long id) {
 		return empresaService.listarEmpresa(id);
@@ -54,6 +53,11 @@ public class EmpresaController {
 	@Transactional
 	public ResponseEntity<ReturnEmpresaDto> cadastrarEmpresa(@RequestBody @Valid EmpresaDto empresaDto, UriComponentsBuilder uriBuilder) {
 		return empresaService.cadastrarEmpresa(empresaDto, uriBuilder);
+	}
+	
+	@PostMapping("banner/{id}")
+	public ResponseEntity<ReturnBannerPut> alterarBanner(@PathVariable Long id, @RequestBody @Valid PutBannerDto bannerDto){
+		return empresaService.alterarBanner(id, bannerDto);
 	}
 	
 	@PutMapping("alterar/{id}")
@@ -70,10 +74,4 @@ public class EmpresaController {
 	public ResponseEntity<ReturnEmpresaDto> logarEmpresa(@RequestBody @Valid EmpresaLogin empresa) {
 		return empresaService.logarEmpresa(empresa);
 	}
-	
-	@PutMapping("banner/{id}")
-	public ResponseEntity<ReturnBannerPut> alterarBanner(@PathVariable Long id, @RequestBody @Valid PutBannerDto bannerDto){
-		return empresaService.alterarBanner(id, bannerDto);
-	}
-
 }

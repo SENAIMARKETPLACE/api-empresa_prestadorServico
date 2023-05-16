@@ -12,9 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import br.com.senai.sollaris.domain.resources.dtos.input.EmpresaDto;
 import br.com.senai.sollaris.domain.resources.dtos.input.EnderecoDto;
 import br.com.senai.sollaris.domain.resources.dtos.input.PutBannerDto;
@@ -33,7 +30,6 @@ public class Empresa {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@JsonIgnore
 	private Long id;
 	private String nome_fantasia;
 	private String razao_social;
@@ -49,7 +45,6 @@ public class Empresa {
 	private LocalDateTime dt_alteracao;
 	
 	@OneToMany (mappedBy = "empresa", cascade = CascadeType.ALL)
-	@JsonBackReference
 	private List<Endereco> enderecos = new ArrayList<>();
 	
 	//Utilizado para Put de banner
@@ -60,15 +55,46 @@ public class Empresa {
 	
 	//Utilizado para Put de emdpresa
 	public void alterar(PutEmpresaDto empresaDto) {
-		this.nome_fantasia = empresaDto.getNome_fantasia();
-		this.razao_social = empresaDto.getRazao_social();
-		this.cnpj = empresaDto.getCnpj();
-		this.nome_responsavel = empresaDto.getNome_proprietario();
-		this.telefone = empresaDto.getTelefone();
-		this.email = empresaDto.getEmail();
-		this.senha = empresaDto.getSenha();
-		this.img = empresaDto.getUrl_logo();
-		this.dt_alteracao = LocalDateTime.now();
+		
+		if (empresaDto.getNome_fantasia() != null) {
+			this.nome_fantasia = empresaDto.getNome_fantasia();
+			this.dt_alteracao = LocalDateTime.now();
+		}
+		
+		if (empresaDto.getCnpj() != null) {
+			this.cnpj = empresaDto.getCnpj();
+			this.dt_alteracao = LocalDateTime.now();
+		}
+		
+		if (empresaDto.getNome_proprietario() != null) {
+			this.nome_responsavel = empresaDto.getNome_proprietario();
+			this.dt_alteracao = LocalDateTime.now();
+		}
+		
+		if (empresaDto.getEmail() != null) {
+			this.email = empresaDto.getEmail();
+			this.dt_alteracao = LocalDateTime.now();
+		}
+		
+		if (empresaDto.getSenha() != null) {
+			this.senha = empresaDto.getSenha();
+			this.dt_alteracao = LocalDateTime.now();
+		}
+		
+		if (empresaDto.getRazao_social() != null) {
+			this.razao_social = empresaDto.getRazao_social();
+			this.dt_alteracao = LocalDateTime.now();
+		}
+		
+		if (empresaDto.getTelefone() != null) {
+			this.telefone = empresaDto.getTelefone();
+			this.dt_alteracao = LocalDateTime.now();
+		}
+		
+		if (empresaDto.getUrl_logo() != null) {
+			this.img = empresaDto.getUrl_logo();
+			this.dt_alteracao = LocalDateTime.now();
+		}		
 	}
 	
 	//Utilizado para cadastrar Produto
@@ -88,7 +114,8 @@ public class Empresa {
 		this.enderecos.add(new Endereco(endereco, this));
 		
 	}
-
+	
+	//Utilizado no EmpresaServiceValidation
 	public Empresa(PutEmpresaDto empresaDto) {
 		this.nome_fantasia = empresaDto.getNome_fantasia();
 		this.razao_social = empresaDto.getRazao_social();

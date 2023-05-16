@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import br.com.senai.sollaris.domain.resources.service.exceptions.CnpjEmUsoException;
 import br.com.senai.sollaris.domain.resources.service.exceptions.DadosInvalidosException;
+import br.com.senai.sollaris.domain.resources.service.exceptions.EmailEmUsoException;
 import br.com.senai.sollaris.domain.resources.service.exceptions.ObjetoNaoEncontradoException;
 
 @ControllerAdvice
@@ -58,6 +60,26 @@ public class handleExceptions extends ResponseEntityExceptionHandler {
 	
 	@ExceptionHandler(DadosInvalidosException.class)
 	public ResponseEntity<Object> DadosInvalidosException(DadosInvalidosException ex, 
+			HttpServletRequest request2) {
+		HttpStatus status = HttpStatus.BAD_REQUEST;
+		
+		RespostaException respostaException = new RespostaException(ex.getMessage(), status.value(), request2);
+		
+		return ResponseEntity.status(status).body(respostaException);
+	}
+	
+	@ExceptionHandler(EmailEmUsoException.class)
+	public ResponseEntity<Object> DadosInvalidosException(EmailEmUsoException ex, 
+			HttpServletRequest request2) {
+		HttpStatus status = HttpStatus.BAD_REQUEST;
+		
+		RespostaException respostaException = new RespostaException(ex.getMessage(), status.value(), request2);
+		
+		return ResponseEntity.status(status).body(respostaException);
+	}
+	
+	@ExceptionHandler(CnpjEmUsoException.class)
+	public ResponseEntity<Object> DadosInvalidosException(CnpjEmUsoException ex, 
 			HttpServletRequest request2) {
 		HttpStatus status = HttpStatus.BAD_REQUEST;
 		
