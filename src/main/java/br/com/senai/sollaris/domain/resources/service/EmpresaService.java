@@ -18,6 +18,7 @@ import br.com.senai.sollaris.domain.resources.dtos.input.EmpresaLogin;
 import br.com.senai.sollaris.domain.resources.dtos.input.PutBannerDto;
 import br.com.senai.sollaris.domain.resources.dtos.input.PutEmpresaDto;
 import br.com.senai.sollaris.domain.resources.dtos.input.PutEmpresaDto2;
+import br.com.senai.sollaris.domain.resources.dtos.input.PutEmpresaSenhaDto;
 import br.com.senai.sollaris.domain.resources.dtos.output.ReturnBannerPut;
 import br.com.senai.sollaris.domain.resources.dtos.output.ReturnEmpresaDto;
 import br.com.senai.sollaris.domain.resources.dtos.output.ReturnEmpresaPut;
@@ -124,8 +125,8 @@ public class EmpresaService {
 		}
 		return ResponseEntity.notFound().build();
 	}
-
-
+	
+	@Transactional
 	public ResponseEntity<ReturnEmpresaDto> alterarDadosPessoais(PutEmpresaDto2 empresaDto) {
 		Empresa empresa = this.buscarEmpresa(empresaDto.getEmpresa_id());
 		
@@ -134,5 +135,20 @@ public class EmpresaService {
 		
 		return ResponseEntity.ok(new ReturnEmpresaDto(empresa));
 		
+	}
+	
+	@Transactional
+	public ResponseEntity<ReturnEmpresaDto> alterarSenha(PutEmpresaSenhaDto empresaDto) {
+		Empresa empresa = this.buscarEmpresa(empresaDto.getEmpresa_id());
+		
+		if (!empresa.getSenha().equals(empresaDto.getSenha_antiga()))
+			throw new DadosInvalidosException("A senha antiga está incorreta, tente novamente");
+		
+		if (empresa.getSenha().equals(empresaDto.getSenha_nova()))
+			throw new DadosInvalidosException("A senha antiga e a senha nova são as mesmas");
+		
+		empresa.setSenha(empresaDto.getSenha_nova());
+		
+		return ResponseEntity.ok(new ReturnEmpresaDto(empresa));
 	}
 }
