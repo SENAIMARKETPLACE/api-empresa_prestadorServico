@@ -17,6 +17,7 @@ import br.com.senai.sollaris.domain.resources.dtos.input.EmpresaDto;
 import br.com.senai.sollaris.domain.resources.dtos.input.EmpresaLogin;
 import br.com.senai.sollaris.domain.resources.dtos.input.PutBannerDto;
 import br.com.senai.sollaris.domain.resources.dtos.input.PutEmpresaDto;
+import br.com.senai.sollaris.domain.resources.dtos.input.PutEmpresaDto2;
 import br.com.senai.sollaris.domain.resources.dtos.output.ReturnBannerPut;
 import br.com.senai.sollaris.domain.resources.dtos.output.ReturnEmpresaDto;
 import br.com.senai.sollaris.domain.resources.dtos.output.ReturnEmpresaPut;
@@ -122,5 +123,16 @@ public class EmpresaService {
 			return ResponseEntity.ok(new ReturnBannerPut(empresaSGBD));
 		}
 		return ResponseEntity.notFound().build();
+	}
+
+
+	public ResponseEntity<ReturnEmpresaDto> alterarDadosPessoais(PutEmpresaDto2 empresaDto) {
+		Empresa empresa = this.buscarEmpresa(empresaDto.getEmpresa_id());
+		
+		empresa.alterar(empresaDto);
+		empresaRepository.save(empresa);
+		
+		return ResponseEntity.ok(new ReturnEmpresaDto(empresa));
+		
 	}
 }

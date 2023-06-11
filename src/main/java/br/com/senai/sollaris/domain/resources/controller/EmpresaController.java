@@ -22,6 +22,7 @@ import br.com.senai.sollaris.domain.resources.dtos.input.PutBannerDto;
 import br.com.senai.sollaris.domain.resources.dtos.input.EmpresaDto;
 import br.com.senai.sollaris.domain.resources.dtos.input.EmpresaLogin;
 import br.com.senai.sollaris.domain.resources.dtos.input.PutEmpresaDto;
+import br.com.senai.sollaris.domain.resources.dtos.input.PutEmpresaDto2;
 import br.com.senai.sollaris.domain.resources.dtos.output.ReturnBannerPut;
 import br.com.senai.sollaris.domain.resources.dtos.output.ReturnEmpresaDto;
 import br.com.senai.sollaris.domain.resources.dtos.output.ReturnEmpresaPut;
@@ -63,6 +64,11 @@ public class EmpresaController {
 	@PutMapping("alterar/{id}")
 	public ResponseEntity<ReturnEmpresaPut> alterarEmpresa(@PathVariable Long id, @RequestBody @Valid PutEmpresaDto empresaDto) {
 		return empresaService.alterarEmpresa(id, empresaDto);
+	}
+	
+	@PutMapping("/alterarDadosPessoais")
+	public ResponseEntity<ReturnEmpresaDto> alterarDadosPessoais(@RequestBody @Valid PutEmpresaDto2 empresaDto) {
+		return empresaService.alterarDadosPessoais(empresaDto);
 	}
 	
 	@DeleteMapping("delete/{id}")

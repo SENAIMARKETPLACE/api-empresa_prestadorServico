@@ -17,8 +17,10 @@ public class ReturnEmpresaDto {
 	private String nome_proprietario;
 	private String nome_fantasia;
 	private String cnpj;
+	private String email;
 	private String telefone;
 	private String url_logo;
+	private String banner;
 	private List<ReturnEnderecoDto> enderecos;
 	
 	public ReturnEmpresaDto(Empresa empresa) {
@@ -28,6 +30,8 @@ public class ReturnEmpresaDto {
 		this.cnpj = empresa.getCnpj();
 		this.telefone = empresa.getTelefone();
 		this.url_logo = empresa.getImg();
+		this.email = empresa.getEmail();
+		this.banner = empresa.getBanner();
 		this.enderecos = empresa.getEnderecos()
 				.stream().map(endereco -> new ReturnEnderecoDto(endereco)).toList();
 	}
